@@ -1,0 +1,27 @@
+{
+  "name": "flyweb",
+  "version": "1.0.0",
+  "description": "A Node.js implementation of FlyWeb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "flyweb"
+  ],
+  "author": "Juan Gomez",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  },
+  "dependencies": {
+    "bleno": "^0.4.0",
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "hbs": "^4.0.0",
+    "noble": "^1.6.0",
+    "ws": "^1.1.1"
+  }
+}

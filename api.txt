@@ -1,0 +1,78 @@
+FlyWeb API
+==========
+
+- Gecko implementation
+
+http://searchfox.org/mozilla-central/source/dom/webidl/Navigator.webidl#139
+http://searchfox.org/mozilla-central/source/dom/webidl/FlyWebPublish.webidl
+http://searchfox.org/mozilla-central/source/dom/webidl/FlyWebDiscoveryManager.webidl
+http://searchfox.org/mozilla-central/source/dom/webidl/FlyWebFetchEvent.webidl
+http://searchfox.org/mozilla-central/source/dom/webidl/FlyWebWebSocketEvent.webidl
+
+
+
+Promise<FlyWebPublishedServer> publishServer(DOMString name,
+                                             optional FlyWebPublishOptions options);
+
+interface FlyWebPublishedServer : EventTarget {
+  readonly attribute DOMString name;
+  readonly attribute DOMString? uiUrl;
+
+  void close();
+
+  attribute EventHandler onclose;
+  attribute EventHandler onfetch;
+  attribute EventHandler onwebsocket;
+};
+
+dictionary FlyWebPublishOptions {
+  DOMString? uiUrl = null; // URL to user interface. Can be different server. Makes
+                           // endpoint show up in browser's "local services" UI.
+                           // If relative, resolves against the root of the server
+};
+
+
+
+dictionary FlyWebDiscoveredService {
+  DOMString serviceId = "";
+  DOMString displayName = "";
+  DOMString transport = "";
+  DOMString serviceType = "";
+  DOMString cert = "";
+  DOMString path = "";
+};
+
+dictionary FlyWebPairedService {
+  FlyWebDiscoveredService discoveredService;
+  DOMString hostname = "";
+  DOMString uiUrl = "";
+};
+
+callback interface FlyWebPairingCallback {
+  void pairingSucceeded(optional FlyWebPairedService service);
+  void pairingFailed(DOMString error);
+};
+
+callback interface FlyWebDiscoveryCallback {
+  void onDiscoveredServicesChanged(sequence<FlyWebDiscoveredService> serviceList);
+};
+
+[ChromeOnly, ChromeConstructor, Exposed=(Window,System)]
+interface FlyWebDiscoveryManager {
+    sequence<FlyWebDiscoveredService> listServices();
+
+    unsigned long startDiscovery(FlyWebDiscoveryCallback aCallback);
+    void stopDiscovery(unsigned long aId);
+
+    void pairWithService(DOMString serviceId, FlyWebPairingCallback callback);
+};
+
+
+
+Node Modules Dependencies
+=========================
+
+Express (WebServer)
+Bleno (Peripheral BLE)
+Noble (Central BLE)
+Socket.io (WebSockets)
