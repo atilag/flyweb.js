@@ -66,13 +66,3 @@ interface FlyWebDiscoveryManager {
 
     void pairWithService(DOMString serviceId, FlyWebPairingCallback callback);
 };
-
-
-
-Node Modules Dependencies
-=========================
-
-Express (WebServer)
-Bleno (Peripheral BLE)
-Noble (Central BLE)
-Socket.io (WebSockets)
