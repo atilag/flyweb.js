@@ -12,4 +12,3 @@ flyWebGattService.startAdvertising('FlyWeb',  {uiUri: 'index.html'}).then( () =>
 	console.log(error);
 });
 
-

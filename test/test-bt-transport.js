@@ -5,7 +5,7 @@
 var assert = require('chai').assert;
 var FlyWeb = require('../lib/flyweb');
 var FlyWebPublishOptions = require('../lib/flywebpublishoptions');
-var noble = require('noble');
+//var noble = require('noble'); TODO <--- ESTO ESTABA ENTRANDO EN CONFLICTO CON BLENO!!!!! Unknown peripheral 2345234523452 connected! :(
 
 var fw = FlyWeb();
 
